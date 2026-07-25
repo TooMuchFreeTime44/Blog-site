@@ -9,7 +9,10 @@
         <button id="go-to-reader">Reader</button>
         <div id="editor-mode">
             <h2>Editor</h2>
-            <textarea placeholder="Write here..." rows="10" cols="50"></textarea>
+            <textarea id="title-area" placeholder="Title here..." rows="1" cols="50"></textarea>
+            <br>
+            <textarea id="content-area" placeholder="Write here..." rows="15" cols="50"></textarea>
+            <br>
             <button id="publish-button">Publish</button>
         </div>
         <div id="reader-mode" style="display: none;">
@@ -28,6 +31,28 @@
             readerButton.addEventListener('click', () => {
                 editorMode.style.display = 'none';
                 readerMode.style.display = 'block';
+            });
+
+            const publishButton = document.getElementById('publish-button');
+            publishButton.addEventListener('click', async () => {
+                const titleArea = document.getElementById('title-area');
+                const contentArea = document.getElementById('content-area');
+                let postTitle = titleArea.value;
+                let postContent = contentArea.value;
+                const response = await fetch('/api/posts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: postTitle,
+                        content: postContent
+                    })
+                });
+                const result = await response.json();
+                console.log(result);
+                titleArea.value = '';
+                contentArea.value = '';
             });
         </script>
     </body>
