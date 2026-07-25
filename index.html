@@ -17,7 +17,7 @@
         </div>
         <div id="reader-mode" style="display: none;">
             <h2>Reader</h2>
-            <p>Blog contents go here</p>
+            <menu id="title-list" style="list-style-type: none; padding: 0;"></menu>
         </div>
         <script>
             const editorMode = document.getElementById('editor-mode');
@@ -28,9 +28,17 @@
                 editorMode.style.display = 'block';
                 readerMode.style.display = 'none';
             });
-            readerButton.addEventListener('click', () => {
+            readerButton.addEventListener('click', async () => {
                 editorMode.style.display = 'none';
                 readerMode.style.display = 'block';
+                const titlesList = document.getElementById('title-list');
+                const response = await fetch('/api/post_list');
+                const posts = await response.json();
+                posts.forEach(post => {
+                    const li = document.createElement('li');
+                    li.innerText = post.title;
+                    titlesList.appendChild(li);
+                });
             });
 
             const publishButton = document.getElementById('publish-button');
@@ -39,7 +47,7 @@
                 const contentArea = document.getElementById('content-area');
                 let postTitle = titleArea.value;
                 let postContent = contentArea.value;
-                const response = await fetch('/api/posts', {
+                const response = await fetch('/api/post_blog', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

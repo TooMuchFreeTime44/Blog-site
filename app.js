@@ -7,7 +7,7 @@ let posts = [];
 app.use(express.json());
 app.use(express.static(__dirname));
 
-app.post('/api/posts', (req, res) => {
+app.post('/api/post_blog', (req, res) => {
     const newPost = {
         id: Date.now(),
         title: req.body.title,
@@ -17,6 +17,10 @@ app.post('/api/posts', (req, res) => {
     res.json({
         status: "received"
     });
+});
+
+app.get('/api/post_list', (req, res) => {
+    res.json(posts);
 });
 
 app.listen(PORT, () => {
