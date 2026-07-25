@@ -2,10 +2,21 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+let posts = [];
+
+app.use(express.json());
 app.use(express.static(__dirname));
 
-app.get('/api/hello', (req, res) => {
-    res.json({ message: "Hello, World and Michael Keliher! (from the Node.js backend!)" });
+app.post('/api/posts', (req, res) => {
+    const newPost = {
+        id: Date.now(),
+        title: req.body.title,
+        content: req.body.content
+    };
+    posts.push(newPost);
+    res.json({
+        status: "received"
+    });
 });
 
 app.listen(PORT, () => {
