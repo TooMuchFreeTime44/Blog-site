@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Minimum Viable Product</title>
+    </head>
+    <body>
+        <button id="go-to-editor">Editor</button>
+        <button id="go-to-reader">Reader</button>
+        <div id="editor-mode">
+            <h2>Editor</h2>
+            <textarea placeholder="Write here..." rows="10" cols="50"></textarea>
+            <button id="publish-button">Publish</button>
+        </div>
+        <div id="reader-mode" style="display: none;">
+            <h2>Reader</h2>
+            <p>Blog contents go here</p>
+        </div>
+        <script>
+            const editorMode = document.getElementById('editor-mode');
+            const readerMode = document.getElementById('reader-mode');
+            const editorButton = document.getElementById('go-to-editor');
+            const readerButton = document.getElementById('go-to-reader');
+            editorButton.addEventListener('click', () => {
+                editorMode.style.display = 'block';
+                readerMode.style.display = 'none';
+            });
+            readerButton.addEventListener('click', () => {
+                editorMode.style.display = 'none';
+                readerMode.style.display = 'block';
+            });
+        </script>
+    </body>
+</html>
