@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Minimum Viable Product</title>
     </head>
     <body>
@@ -13,7 +14,7 @@
             <br>
             <textarea id="content-area" placeholder="Write here..." rows="15" cols="50"></textarea>
             <br>
-            <button id="publish-button">Publish</button>
+            <button id="publish-button" disabled>Publish</button>
         </div>
         <div id="reader-mode" style="display: none;">
             <h2>Reader</h2>
@@ -73,9 +74,16 @@
             });
 
             const publishButton = document.getElementById('publish-button');
+            const titleArea = document.getElementById('title-area');
+            const contentArea = document.getElementById('content-area');
+            titleArea.addEventListener('input', () => {
+                if (titleArea.value.trim() !== '') {
+                    publishButton.disabled = false;
+                } else {
+                    publishButton.disabled = true;
+                }
+            });
             publishButton.addEventListener('click', async () => {
-                const titleArea = document.getElementById('title-area');
-                const contentArea = document.getElementById('content-area');
                 let postTitle = titleArea.value;
                 let postContent = contentArea.value;
                 const response = await fetch('/api/post_blog', {
@@ -92,6 +100,7 @@
                 console.log(result);
                 titleArea.value = '';
                 contentArea.value = '';
+                publishButton.disabled = true;
             });
         </script>
     </body>
