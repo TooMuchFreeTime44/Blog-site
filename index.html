@@ -5,7 +5,7 @@
         <title>Minimum Viable Product</title>
     </head>
     <body>
-        <button id="go-to-editor">Editor</button>
+        <button id="go-to-editor" disabled>Editor</button>
         <button id="go-to-reader">Reader</button>
         <div id="editor-mode">
             <h2>Editor</h2>
@@ -37,11 +37,15 @@
             editorButton.addEventListener('click', () => {
                 editorMode.style.display = 'block';
                 readerMode.style.display = 'none';
+                editorButton.disabled = true;
+                readerButton.disabled = false;
                 singleReaderMode.style.display = 'none';
             });
             readerButton.addEventListener('click', async () => {
                 editorMode.style.display = 'none';
                 readerMode.style.display = 'block';
+                editorButton.disabled = false;
+                readerButton.disabled = true;
                 singleReaderMode.style.display = 'none';
                 const titlesList = document.getElementById('title-list');
                 const response = await fetch('/api/post_list');
@@ -63,6 +67,8 @@
             backButton.addEventListener('click', () => {
                 editorMode.style.display = 'none';
                 readerMode.style.display = 'block';
+                editorButton.disabled = false;
+                readerButton.disabled = true;
                 singleReaderMode.style.display = 'none';
             });
 
