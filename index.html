@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Minimum Viable Product</title>
     </head>
     <body>
@@ -19,26 +19,51 @@
             <h2>Reader</h2>
             <menu id="title-list" style="list-style-type: none; padding: 0;"></menu>
         </div>
+        <div id="single-reader-mode" style="display: none;">
+            <button id="back-button">Back</button>
+            <h2>Reader</h2>
+            <h3 id="title-location"></h3>
+            <p id="content-location"></p>
+        </div>
         <script>
             const editorMode = document.getElementById('editor-mode');
             const readerMode = document.getElementById('reader-mode');
+            const singleReaderMode = document.getElementById('single-reader-mode');
+            const titleLocation = document.getElementById('title-location');
+            const contentLocation = document.getElementById('content-location');
             const editorButton = document.getElementById('go-to-editor');
             const readerButton = document.getElementById('go-to-reader');
+            const backButton = document.getElementById('back-button');
             editorButton.addEventListener('click', () => {
                 editorMode.style.display = 'block';
                 readerMode.style.display = 'none';
+                singleReaderMode.style.display = 'none';
             });
             readerButton.addEventListener('click', async () => {
                 editorMode.style.display = 'none';
                 readerMode.style.display = 'block';
+                singleReaderMode.style.display = 'none';
                 const titlesList = document.getElementById('title-list');
                 const response = await fetch('/api/post_list');
                 const posts = await response.json();
+                titlesList.innerHTML = '';
                 posts.forEach(post => {
                     const li = document.createElement('li');
                     li.innerText = post.title;
+                    li.addEventListener('click', () => {
+                        editorMode.style.display = 'none';
+                        readerMode.style.display = 'none';
+                        singleReaderMode.style.display = 'block';
+                        titleLocation.innerText = post.title;
+                        contentLocation.innerText = post.content;
+                    });
                     titlesList.appendChild(li);
                 });
+            });
+            backButton.addEventListener('click', () => {
+                editorMode.style.display = 'none';
+                readerMode.style.display = 'block';
+                singleReaderMode.style.display = 'none';
             });
 
             const publishButton = document.getElementById('publish-button');
