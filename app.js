@@ -24,7 +24,7 @@ const postSchema = new mongoose.Schema({
     content: { type: String, required: true },
     createdAt: { type: Date, default: Date.now }
 });
-const Post = new mongoose.model('Post', postSchema);
+const Post = mongoose.model('Post', postSchema);
 
 app.use(express.json());
 app.use(express.static(__dirname));
