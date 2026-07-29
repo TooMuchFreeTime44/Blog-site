@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const dns = require('node:dns');
 dns.setDefaultResultOrder('ipv4first');
 dns.setServers(['8.8.8.8', '8.8.4.4']);
@@ -7,7 +9,7 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = 3000;
 
-const dbURI = 'mongodb+srv://jrkeliher_db_user:pr6hKTiGD29Uvli2@blog-site.fvbl2hf.mongodb.net/?appName=Blog-site';
+const dbURI = process.env.MONGODB_URI;
 mongoose.connect(dbURI)
     .then(() => {
         console.log('Database connection succesful')
