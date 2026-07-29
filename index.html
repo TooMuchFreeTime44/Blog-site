@@ -52,18 +52,22 @@
                 const response = await fetch('/api/post_list');
                 const posts = await response.json();
                 titlesList.innerHTML = '';
-                posts.forEach(post => {
-                    const li = document.createElement('li');
-                    li.innerText = post.title;
-                    li.addEventListener('click', () => {
-                        editorMode.style.display = 'none';
-                        readerMode.style.display = 'none';
-                        singleReaderMode.style.display = 'block';
-                        titleLocation.innerText = post.title;
-                        contentLocation.innerText = post.content;
+                if (Array.isArray(posts)) {
+                    posts.forEach(post => {
+                        const li = document.createElement('li');
+                        li.innerText = post.title;
+                        li.addEventListener('click', () => {
+                            editorMode.style.display = 'none';
+                            readerMode.style.display = 'none';
+                            singleReaderMode.style.display = 'block';
+                            titleLocation.innerText = post.title;
+                            contentLocation.innerText = post.content;
+                        });
+                        titlesList.appendChild(li);
                     });
-                    titlesList.appendChild(li);
-                });
+                } else {
+                    console.log('Database gave a non-array response:', posts);
+                }
             });
             backButton.addEventListener('click', () => {
                 editorMode.style.display = 'none';
