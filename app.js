@@ -7,7 +7,7 @@ dns.setServers(['8.8.8.8', '8.8.4.4']);
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.port || 3000;
 
 const dbURI = process.env.MONGODB_URI;
 mongoose.connect(dbURI)
