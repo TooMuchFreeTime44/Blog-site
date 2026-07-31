@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Minimum Viable Product</title>
+        <title>Inkpad</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
         <style>
             #title-list li {
@@ -62,11 +62,31 @@
                 background-color: #adb5bd;
                 cursor: not-allowed;
             }
+            #main-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-bottom: 20px;
+                margin-bottom: 30px;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            .logo {
+                padding-left: 10px;
+                margin: 0;
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #1a1a1a;
+            }
         </style>
     </head>
     <body>
-        <button id="go-to-editor" disabled>Editor</button>
-        <button id="go-to-reader">Reader</button>
+        <header id="main-header">
+            <h1 class="logo">Inkpad</h1>
+            <nav class="nav-links">
+                <button id="go-to-editor" disabled>Editor</button>
+                <button id="go-to-reader">Reader</button>
+            </nav>
+        </header>
         <div id="editor-mode">
             <h2>Editor</h2>
             <textarea id="title-area" placeholder="Title here..." rows="1" cols="50"></textarea>
