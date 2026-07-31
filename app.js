@@ -15,7 +15,7 @@ mongoose.connect(dbURI)
         console.log('Database connection succesful')
 
         app.listen(PORT, () => {
-            console.log('Server is running at http://localhost:' + PORT);
+            console.log('Server is running');
         });
     })
     .catch((err) => console.log('Database connection error:', err));
