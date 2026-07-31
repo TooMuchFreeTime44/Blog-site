@@ -4,6 +4,27 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Minimum Viable Product</title>
+        <style>
+            #title-list li {
+                background-color: #ffffff;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+
+                padding: 16px 20px;
+                margin-bottom: 12px;
+
+                font-size: 1.1rem;
+                font-weight: 600;
+                cursor: pointer;
+
+                transition: all 0.2s ease;
+            }
+            #title-list li:hover{
+                transform: translateY(-3px);
+                border-color: #4c6ef5;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+        </style>
     </head>
     <body>
         <button id="go-to-editor" disabled>Editor</button>
