@@ -85,13 +85,14 @@
             <nav class="nav-links">
                 <button id="go-to-editor" disabled>Editor</button>
                 <button id="go-to-reader">Reader</button>
+                <button id="back-button" style="display: none;">Back</button>
             </nav>
         </header>
         <div id="editor-mode">
             <h2>Editor</h2>
             <textarea id="title-area" placeholder="Title here..." rows="1" cols="50"></textarea>
             <br>
-            <textarea id="content-area" placeholder="Write here..." rows="20" cols="50"></textarea>
+            <textarea id="content-area" placeholder="Write here..." rows="19" cols="50"></textarea>
             <br>
             <button id="publish-button" disabled>Publish</button>
         </div>
@@ -100,7 +101,6 @@
             <menu id="title-list" style="list-style-type: none; padding: 0;"></menu>
         </div>
         <div id="single-reader-mode" style="display: none;">
-            <button id="back-button">Back</button>
             <h2>Reader</h2>
             <h3 id="title-location"></h3>
             <p id="content-location"></p>
@@ -139,6 +139,10 @@
                             editorMode.style.display = 'none';
                             readerMode.style.display = 'none';
                             singleReaderMode.style.display = 'block';
+                            editorButton.style.display = 'none';
+                            readerButton.style.display = 'none';
+                            backButton.style.display = 'inline-block';
+                            backButton.disabled = false;
                             titleLocation.innerText = post.title;
                             contentLocation.innerText = post.content;
                         });
@@ -151,8 +155,12 @@
             backButton.addEventListener('click', () => {
                 editorMode.style.display = 'none';
                 readerMode.style.display = 'block';
+                editorButton.style.display = 'inline-block';
+                readerButton.style.display = 'inline-block';
+                backButton.style.display = 'none';
                 editorButton.disabled = false;
                 readerButton.disabled = true;
+                backButton.disabled = true;
                 singleReaderMode.style.display = 'none';
             });
 
