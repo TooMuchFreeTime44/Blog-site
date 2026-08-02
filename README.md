@@ -1,1 +1,16 @@
-This is a repo for a website called Inkpad. It is a blog site where you can post and read blogs. The frontend is HTML with one giant JS script for interactivity. The backend is programmed using Node.js and Express. It has routes for posting a blog, getting a list of all the blogs, and getting the content of a blog. The blogs are stored in a MongoDB Atlas cluster. The backend talks to the cluster through Mongoose. For the frontend, there are three main parts. The first is an editor mode. This is where you write and publish blogs. Second is a list of all the blogs. When you switch to what the UI calls the reader mode, it brings you a list of all the blogs in the cluster. You can click on any of them, and it brings you to the third part of the frontend, which is a blog reader. It loads the title and content of the blog and displays them.
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+
+## React Compiler
+
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
