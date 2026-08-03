@@ -56,3 +56,11 @@ app.get('/api/post_list', async (req, res) => {
         res.status(500).json({ error: "Failed to retrieve posts from database" });
     }
 });
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'dist')));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+    });
+}
