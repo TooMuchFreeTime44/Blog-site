@@ -10,7 +10,6 @@ dns.setServers(['8.8.8.8', '8.8.4.4']);
 import express from 'express';
 import mongoose from 'mongoose';
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 const dbURI = process.env.MONGODB_URI;
 mongoose.connect(dbURI)
@@ -57,6 +56,7 @@ app.get('/api/post_list', async (req, res) => {
     }
 });
 
+const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, 'dist')));
 
