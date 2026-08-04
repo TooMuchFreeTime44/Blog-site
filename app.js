@@ -57,14 +57,9 @@ app.get('/api/post_list', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV === 'production') {
-    console.log('Running in PRODUCTION mode');
     const pathName = path.resolve(__dirname, 'dist');
-    console.log('Pathname:', pathName);
     app.use(express.static(pathName));
     app.get('/{*path}', (req, res) => {
         res.sendFile(path.join(pathName, 'index.html'));
     });
-} else {
-    console.log('Running in DEVELOPER mode');
-    app.use(express.static(__dirname));
 }
