@@ -29,7 +29,6 @@ const postSchema = new mongoose.Schema({
 const Post = mongoose.model('Post', postSchema);
 
 app.use(express.json());
-app.use(express.static(__dirname));
 
 app.post('/api/post_blog', async (req, res) => {
     try {
@@ -58,9 +57,14 @@ app.get('/api/post_list', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'dist')));
-
+    console.log('Running in PRODUCTION mode');
+    const pathName = path.resolve(__dirname, 'dist');
+    console.log('Pathname:', pathName);
+    app.use(express.static(pathName));
     app.get('/{*path}', (req, res) => {
-        res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+        res.sendFile(path.join(pathName, 'index.html'));
     });
+} else {
+    console.log('Running in DEVELOPER mode');
+    app.use(express.static(__dirname));
 }
